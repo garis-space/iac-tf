@@ -1,0 +1,45 @@
+[command]/home/runner/work/_temp/348a5f62-7fc6-4831-9356-91e265005156/terraform-bin plan -input=false -no-color
+Running plan in Terraform Cloud. Output will stream here. Pressing Ctrl-C
+will stop streaming the logs, but will not stop the plan running remotely.
+
+Preparing the remote plan...
+
+The remote workspace is configured to work with configuration at
+terraform/environments/dev relative to the target repository.
+
+Terraform will upload the contents of the following directory,
+excluding files or directories as defined by a .terraformignore file
+at /home/runner/work/iac-tf/iac-tf/.terraformignore (if it is present),
+in order to capture the filesystem context the remote workspace expects:
+    /home/runner/work/iac-tf/iac-tf
+
+To view this run in a browser, visit:
+https://app.terraform.io/app/garis-space/dev-aws-eu-central-1/runs/run-9i97xmamVSgaUmpd
+
+Waiting for the plan to start...
+
+Terraform v1.3.7
+on linux_amd64
+Initializing plugins and modules...
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.vpc_aws.null_resource.vpc will be created
+  + resource "null_resource" "vpc" {
+      + id       = (known after apply)
+      + triggers = {
+          + "cidr_block" = "0.0.0.0/1"
+          + "name"       = "Main VPC"
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+::debug::Terraform exited with code 0.
+::debug::stdout: Running plan in Terraform Cloud. Output will stream here. Pressing Ctrl-C%0Awill stop streaming the logs, but will not stop the plan running remotely.%0A%0APreparing the remote plan...%0A%0AThe remote workspace is configured to work with configuration at%0Aterraform/environments/dev relative to the target repository.%0A%0ATerraform will upload the contents of the following directory,%0Aexcluding files or directories as defined by a .terraformignore file%0Aat /home/runner/work/iac-tf/iac-tf/.terraformignore (if it is present),%0Ain order to capture the filesystem context the remote workspace expects:%0A    /home/runner/work/iac-tf/iac-tf%0A%0ATo view this run in a browser, visit:%0Ahttps://app.terraform.io/app/garis-space/dev-aws-eu-central-1/runs/run-9i97xmamVSgaUmpd%0A%0AWaiting for the plan to start...%0A%0ATerraform v1.3.7%0Aon linux_amd64%0AInitializing plugins and modules...%0A%0ATerraform used the selected providers to generate the following execution%0Aplan. Resource actions are indicated with the following symbols:%0A  + create%0A%0ATerraform will perform the following actions:%0A%0A  # module.vpc_aws.null_resource.vpc will be created%0A  + resource "null_resource" "vpc" {%0A      + id       = (known after apply)%0A      + triggers = {%0A          + "cidr_block" = "0.0.0.0/1"%0A          + "name"       = "Main VPC"%0A        }%0A    }%0A%0APlan: 1 to add, 0 to change, 0 to destroy.%0A%0A
+::debug::stderr: 
+::debug::exitcode: 0
