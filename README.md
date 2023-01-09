@@ -1,4 +1,4 @@
-# Terraform Reusable Workflow for GitHub Actions with Multiple Environments
+# Reusable Terraform Workflow for GitHub Actions with Multiple Environments
 
 This Workflow will check if the Terraform code is formatted, valid, secure, generate documentation, create a workspace in Terraform Cloud, plan the Terraform code and apply the Terraform code if the pull request is merged. Terraform directory structure has been designed to be reusable across multiple cloud providers and multiple environments.
 
@@ -7,6 +7,7 @@ This Workflow will check if the Terraform code is formatted, valid, secure, gene
 #
 ### Prerequisites
 
+This post assumes that you will create or have an account with Terraform Cloud.
 - [Terraform Cloud Account](https://app.terraform.io)
 
 #
@@ -29,20 +30,31 @@ https://app.terraform.io/app/<ORGANIZATION_NAME>/settings/authentication-tokens
 
 You can fork the repository `https://github.com/garis-space/iac-tf` or use your own repository with the same directory structure.
 
-If you are using your own repository, you need to copy only the `.github/workflows/ci-cd.yml` file to your repository and change the line from `uses: './.github/workflows/terraform.yml'` to `uses: 'garis-space/iac-tf/.github/workflows/terraform.yml'`.
+If you are using your own repository, you need to copy only the `.github/workflows/ci-cd.yml` file to your repository and change the line
+from
+    `uses: './.github/workflows/terraform.yml'`
+to
+    `uses: 'garis-space/iac-tf/.github/workflows/terraform.yml'`
 
-Set Terraform Cloud Organization API Token and Organization name as a secret in the GitHub repository settings
+Then set the Terraform Cloud Organization API Token and Organization Name as the secret in the GitHub repository settings as shown in the screenshot below.
+
 ![GitHub Action Secrets](docs/images/github-action-secrets.png)
 
+Clone forked or your own repository to your local machine.
+
 ```bash
-# Clone the forked repository
 git clone git@github.com:garis-space/iac-tf.git
 cd iac-tf
 ```
 
 In the root directory of the project we have terraform directory structure that is designed to be reusable across multiple cloud providers and multiple environments. The directory structure is as follows:
 - modules (Terraform modules)
+  - vpc
+    - aws (Terraform module for the AWS VPC)
+    - gcp (Terraform module for the GCP VPC)
 - environments (Terraform workspaces)
+  - dev (Terraform workspace for the dev environment)
+  - prod (Terraform workspace for the prod environment)
 
 #
 ### Step 3 - Create a Terraform Cloud workspaces
@@ -66,6 +78,8 @@ In Advanced Options you must type the name of Terraform Working Directory. For e
 
 The last option that you need to set is the VCS branch. For example, if you are creating a workspace for the `dev` environment, the VCS branch should be `dev`.
 
+The same steps must be followed for each new environment.
+
 ![Terraform Cloud Create Workspace](docs/images/terraform-cloud-create-workspace.png)
 
 #
@@ -88,4 +102,4 @@ The workflow will run and create a pull request with the terraform plan and anot
 
 And you can check the status of the GitHub action workflow in the Terraform Cloud.
 
-![Terraform Apply](docs/images/terraform-apply.png)
+![Terraform Cloud Apply](docs/images/terraform-apply.png)
