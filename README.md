@@ -7,11 +7,13 @@ This Workflow will check if the Terraform code is formatted, valid, secure, gene
 #
 ### Prerequisites
 
-This post assumes that you will create or have an account with Terraform Cloud.
-- [Terraform Cloud Account](https://app.terraform.io)
+This post assumes that you will create or have an account with [Terraform Cloud Account](https://app.terraform.io)
 
 #
-### Step 1 - Terraform Cloud (free tier)
+### Optional Step 1 - Terraform Cloud (free tier)
+
+If you have Terraform Cloud account, create only new organization and generate new organization API Token.
+
 ```bash
 # Create a Terraform Cloud account
 https://app.terraform.io
@@ -36,7 +38,7 @@ from
 to
     `uses: 'garis-space/iac-tf/.github/workflows/terraform.yml'`
 
-Then set the Terraform Cloud Organization API Token and Organization Name as the secret in the GitHub repository settings as shown in the screenshot below.
+Then set the Terraform Cloud Organization API Token `TF_API_TOKEN` and Organization Name `TF_ORGANIZATION` as the secret in the GitHub repository settings as shown in the screenshot below.
 
 ![GitHub Action Secrets](docs/images/github-action-secrets.png)
 
@@ -44,6 +46,7 @@ Clone forked or your own repository to your local machine.
 
 ```bash
 git clone git@github.com:garis-space/iac-tf.git
+
 cd iac-tf
 ```
 
@@ -103,3 +106,30 @@ The workflow will run and create a pull request with the terraform plan and anot
 And you can check the status of the GitHub action workflow in the Terraform Cloud.
 
 ![Terraform Cloud Apply](docs/images/terraform-apply.png)
+
+#
+### Optional Step 5 - Run from CLI
+
+If you want to run terraform commands from CLI, you need to install Terraform.
+
+```bash
+# Install Terraform
+https://learn.hashicorp.com/tutorials/terraform/install-cli
+
+# Export Terraform Cloud Organization API Token and Organization Name
+export TF_TOKEN_app_terraform_io="<YOUR_TERRAFORM_CLOUD_ORGANIZATION_API_TOKEN>"
+
+export TF_CLOUD_ORGANIZATION="<YOUR_TERRAFORM_ORGANIZATION>"
+
+# Change directory to the `dev` environment
+cd terraform/environments/dev
+
+# Initialize Terraform
+terraform init
+
+# Check the Terraform plan
+terraform plan
+
+# Apply the Terraform plan
+terraform apply
+```
