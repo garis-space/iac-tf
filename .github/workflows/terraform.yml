@@ -63,7 +63,7 @@ jobs:
     outputs:
       status: ${{ steps.fmt.outputs.status || 'false' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v2
 
       - name: Terraform format
@@ -109,7 +109,7 @@ jobs:
     outputs:
       status: ${{ steps.check.outputs.status || 'false' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Check environment directory
         id: check
@@ -129,7 +129,7 @@ jobs:
     runs-on: ${{ inputs.github_runner }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Terraform docs
         id: docs
@@ -168,7 +168,7 @@ jobs:
     runs-on: ${{ inputs.github_runner }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Terraform lint
         # @see https://github.com/reviewdog/action-tflint
@@ -194,7 +194,7 @@ jobs:
     runs-on: ${{ inputs.github_runner }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Terraform security
         # @see https://github.com/reviewdog/action-tfsec
@@ -227,7 +227,7 @@ jobs:
       TF_CLOUD_ORGANIZATION: ${{ secrets.TF_ORGANIZATION }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -310,7 +310,7 @@ jobs:
       TF_CLOUD_ORGANIZATION: ${{ secrets.TF_ORGANIZATION }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
