@@ -64,7 +64,7 @@ jobs:
       status: ${{ steps.fmt.outputs.status || 'false' }}
     steps:
       - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v2
+      - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform format
         id: fmt
@@ -230,7 +230,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_hostname: ${{ inputs.terraform_hostname }}
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -313,7 +313,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_hostname: ${{ inputs.terraform_hostname }}
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
